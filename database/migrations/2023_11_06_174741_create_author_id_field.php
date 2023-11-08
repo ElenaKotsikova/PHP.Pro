@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-       /* Schema::table('books', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             $table->unsignedInteger('author_id');
             $table->foreign('author_id')->references('id')->on('authors');
-        });*/
+        });
     }
 
     /**

@@ -29,25 +29,4 @@ class BookController extends Controller
     }
 }
 
-/**
- * books
- * ------
- * 1
- * 2
- * 3
- *
- * authors
- * -------
- * 7
- * 8
- * 9
- *
- * books_authors
- * -------------
- * b     |  a
- * -------------
- * 1    |  7
- * 2    |  8
- * 3    |  7
- * 3    |  9
- */
+
