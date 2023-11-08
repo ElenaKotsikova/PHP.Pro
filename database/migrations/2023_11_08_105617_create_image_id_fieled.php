@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-       /* Schema::table('images', function (Blueprint $table) {
-            $table->unsignedInteger('book_id');
+        Schema::table('images', function (Blueprint $table) {
+            $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')->references('page_number')->on('books');
-        });*/
+        });
     }
 
     /**
