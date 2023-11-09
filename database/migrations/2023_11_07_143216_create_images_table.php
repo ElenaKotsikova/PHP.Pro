@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->longText('url');
+            $table->string('url');
             $table->integer('book_id');
         });
     }
