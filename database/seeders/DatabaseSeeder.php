@@ -15,14 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             BookSeeder::class,
+            AuthorSeeder::class,
+            PublisherSeeder::class,
         ]);
-        $this->call([
-            AuthorSeeder::class
-        ]);
-        $this->call([
-            PublisherSeeder::class
-        ]);
-        $this->call([
+
+      /*  $this->call([
             ImageSeeder::class
         ]);
         $this->call([
@@ -30,6 +27,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             User::class
-        ]);
+        ]);*/
     }
 }

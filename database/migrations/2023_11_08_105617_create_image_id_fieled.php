@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('images', function (Blueprint $table) {
+        /*Schema::table('images', function (Blueprint $table) {
             $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('page_number')->on('books');
-        });
+            $table->foreign('book_id')->references('id')->on('books');
+        });*/
     }
 
     /**
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('image_id');
+        Schema::table('images', function (Blueprint $table) {
+             $table->dropColumn('book_id');
+         });
     }
 };

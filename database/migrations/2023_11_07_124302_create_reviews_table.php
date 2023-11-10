@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('rate')->nullable();
             $table->integer('book_id');
             $table->integer('user_id');
+            $table->timestamps();
         });
     }
 

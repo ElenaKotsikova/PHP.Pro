@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/{id}', 'show')->name('book');
-    Route::view('/dropdown','dropdown')->name('list_book');
     Route::view('/AddForm','AddForm')->name('Add_book');
 });
 
