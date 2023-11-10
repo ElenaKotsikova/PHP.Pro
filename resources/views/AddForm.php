@@ -31,7 +31,7 @@
                     @endauth
                 </div>
             @endif
-            <form>
+            <form action="/books/AddForm/" method="post">
                 <div class="mb-3">
                     <label for="title" class="form-label">Название книги</label>
                     <input type="text" class="form-control" id="title" aria-describedby="title">
