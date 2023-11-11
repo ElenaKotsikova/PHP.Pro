@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 
@@ -19,6 +20,10 @@ class BookController extends Controller
     public function show(Book $book): Book
     {
         return $book;
+    }
+
+    public function save(){
+      return request()->all();
     }
 
     public function store(): JsonResponse

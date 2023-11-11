@@ -31,7 +31,7 @@
         @endauth
     </div>
     @endif
-    <form action="" method="post">
+    <form action="{{route('AddBook')}}" method="post">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Название книги</label>
