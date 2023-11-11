@@ -9,9 +9,10 @@ use Illuminate\Http\JsonResponse;
 class BookController extends Controller
 {
     // @route /books
-    public function index(): Collection
+    public function index()
     {
-        return Book::all();
+        return view('addBook');
+        ///return Book::all();
     }
 
     // @route /books/{id}
@@ -64,6 +65,8 @@ class BookController extends Controller
 
         return $book;
     }
+
+
 }
 
 
