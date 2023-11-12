@@ -16,19 +16,16 @@ use Illuminate\Http\Request;
 
 Route::get('/addForm',function (){
     return view('addBook');
-});
-Route::post('/addForm/submit',function (){
-    return "okey";
-});
+})->name('form');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//})->name('home');
-//
-//Route::get('/hlo', function () {
-//    return 'Hello';
-//});
-//
+Route::post('/addForm/submit','save')->name('addFormSub');
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+
+
 //Route::options('/')->name('home');
 //
 //Route::match(['get', 'post'], '/match');
@@ -78,7 +75,8 @@ Route::post('/addForm/submit',function (){
 //Route::controller(BookController::class)->prefix('/books')->group(function () {
 //    Route::get('/', 'index')->name('books.index');
 //    Route::get('/{id}', 'show')->name('book');
+//Route::get('/books/{id}', [BookController::class, 'show'])->name('book');
+
 //});
 //
 //Route::get('/books', [BookController::class, 'index'])->name('books.index');
-//Route::get('/books/{id}', [BookController::class, 'show'])->name('book');

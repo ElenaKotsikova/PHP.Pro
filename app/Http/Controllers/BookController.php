@@ -23,8 +23,17 @@ class BookController extends Controller
     }
 
     public function save(){
-      return request()->all();
+      return dd(request());
     }
+
+    public function reviewStore(Book $book){
+        $review = auth()->user()->reviews()->create([
+            'text'=>request()->input('text'),
+            'rate'=>request()->integer('rate'),
+            'book_id'=>$book->id,
+        ]);
+    }
+
 
     public function store(): JsonResponse
     {

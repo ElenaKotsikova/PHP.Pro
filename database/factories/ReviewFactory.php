@@ -4,6 +4,7 @@ namespace Database\Factories;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use function Webmozart\Assert\Tests\StaticAnalysis\numeric;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Publisher>
@@ -18,8 +19,8 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-           'text' => fake()->text(),
-            'rate' => rand(1,10),
+           'text' => fake()->sentence(),
+            'rate' => numeric(1),
             'book_id' => Book::factory(),
             'user_id'=>User::factory()
         ];
