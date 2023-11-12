@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 
 class BookController extends Controller
@@ -23,7 +22,9 @@ class BookController extends Controller
     }
 
     public function save(){
-      return dd(request());
+       $book = new Book();
+       $book::create(request()->all());
+        return redirect('form') ;
     }
 
     public function reviewStore(Book $book){

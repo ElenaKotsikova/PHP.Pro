@@ -16,6 +16,9 @@ class Book extends Model
    /* protected $casts = [
         'status' => ProductStatus::class,
     ];*/
+    public static function create(array $all)
+    {
+    }
 
 
 }
