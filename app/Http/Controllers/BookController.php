@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Publisher;
 use Illuminate\Http\JsonResponse;
 
 class BookController extends Controller
@@ -22,14 +24,14 @@ class BookController extends Controller
 
     public function saved()
     {
-        $book= new Book();
-        $book->title=request()->input('title');
-        $book->page_number=request()->integer('page_number');
-        $book->annotation=request()->input('annotation');
+        $book_save= new Book([
+            'title'=>request()->input('title'),
+            'page_number'=>request()->integer('page_number'),
+            'annotation'=>request()->input('annotation'),
+        ]);
+        $book_save->save();
 
-        $book->save();
-
-        return redirect()->route('AddBook')->with('success','Книги добавлены!') ;
+        return redirect()->route('form');
     }
 
     public function reviewStore(Book $book){

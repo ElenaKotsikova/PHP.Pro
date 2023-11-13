@@ -23,7 +23,7 @@ class BookFactory extends Factory
             'page_number' => rand(10, 300),
             'annotation' => fake()->realText(),
             'author_id' => Author::factory(),
-             'publisher_id' => Publisher::factory(),
+            'publisher_id' => Publisher::factory(),
         ];
     }
 }

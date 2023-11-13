@@ -9,6 +9,7 @@ class Publisher extends Model
 {
     use HasFactory;
 
+    public mixed $id=6;
     protected  $fillable = [
         'name'
     ];

@@ -9,6 +9,7 @@ class Author extends Model
 {
     use HasFactory;
 
+    public mixed $id=6;
     protected $fillable = [
         'surname', 'name', 'patronymic',
     ];
