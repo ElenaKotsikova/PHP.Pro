@@ -14,69 +14,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/addForm',function (){
-    return view('addBook');
-})->name('form');
-
-Route::post('/addForm/submit','save')->name('addFormSub');
-
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
 
+Route::get('/addForm',function (){
+    return view('addBook');
+})->name('form');
 
-//Route::options('/')->name('home');
-//
-//Route::match(['get', 'post'], '/match');
-//
-//Route::any('/any');
-//
-//// Внедрение зависимости
-//
-//Route::get('/books', function (\Illuminate\Http\Request $request) {
-//    return '...';
-//});
-//
-//// Перенаправление
-//
-//Route::redirect('/from', '/to', 301);
-//
-//
-//// Представления
-//
-//Route::view('/not-found', 'not-found');
-//
-//// Параметры
-//
-//Route::get('/books/{id}', function ($id) {
-//    return 'Книга #' . $id;
-//});
-//
-//Route::get('/books/{book}/comment/{comment}', function ($bookId, $commentId) {
-//
-//});
-//
-//Route::get('/books/{id}', function (Request $request, $id) {
-//    return 'Книга #' . $id;
-//})->name('book.id');
-//
-//Route::get('/books/{?id}', function ($id) {
-//    return 'Книга #' . $id;
-//});
-//
-//// BookController
-//// ...
-//// redirect('home');
-//
-//// /books/1
-//// $url = route('book.id', ['id' => 1]);
-//
-//Route::controller(BookController::class)->prefix('/books')->group(function () {
-//    Route::get('/', 'index')->name('books.index');
-//    Route::get('/{id}', 'show')->name('book');
-//Route::get('/books/{id}', [BookController::class, 'show'])->name('book');
+//Route::post('/addForm/submit','saveForm')->name('addFormSub');
 
-//});
-//
-//Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::controller(BookController::class)->prefix('/books')->group(function () {
+    Route::get('/', 'index')->name('books.index');
+    Route::get('/{id}', 'show')->name('book');
+    Route::post('/addForm','saved')->name('AddBook');
+});
+
+

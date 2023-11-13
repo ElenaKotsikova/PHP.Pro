@@ -9,6 +9,12 @@ class Book extends Model
 {
     use HasFactory;
 
+    public mixed $title;
+    /**
+     * @var int|mixed
+     */
+    public mixed $page_number;
+    public mixed $annotation;
     protected $fillable = [
         'title', 'page_number', 'annotation' ,'status',
     ];
@@ -16,9 +22,7 @@ class Book extends Model
    /* protected $casts = [
         'status' => ProductStatus::class,
     ];*/
-    public static function create(array $all)
-    {
-    }
+
 
 
 }

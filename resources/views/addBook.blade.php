@@ -31,7 +31,7 @@
         @endauth
     </div>
     @endif
-    <form action="{{route('addFormSub')}}" method="post">
+    <form action="{{route('AddBook')}}" method="post">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Название книги</label>
@@ -39,7 +39,7 @@
         </div>
         <div class="mb-3">
             <label for="page" class="form-label">Количество страниц</label>
-            <input type="text" class="form-control" id="page" name="page">
+            <input type="text" class="form-control" id="page_number" name="page_number">
         </div>
         <div class="mb-3">
             <label for="annotation" class="form-label">Анатация книги</label>
