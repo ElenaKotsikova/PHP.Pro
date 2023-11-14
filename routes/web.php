@@ -25,9 +25,12 @@ Route::get('/addForm',function (){
 
 //Route::post('/addForm/submit','saveForm')->name('addFormSub');
 
+
+
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/{id}', 'show')->name('book');
+    Route::get('/author','getAuthor')->name('dropdown');
     Route::post('/addForm','saved')->name('AddBook');
 });
 

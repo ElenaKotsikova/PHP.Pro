@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\Book\StoreBookRequest;
+use App\Http\Resources\BookListResource;
 use App\Models\Book;
 use App\Models\Review;
 use App\Models\User;
@@ -23,11 +24,26 @@ class BookController extends Controller
             User::query()->inRandomOrder()->first()
         );
     }
+
+
     // @route /books
     public function index()
     {
+
+        //return BookListResource::collection()
+
+        $books= Book::all();
+
+        $result = $books->map(function ($book) {
+            return [
+                'id'=>$book->id,
+                'title'=>$book->title,
+                'annotation'=>$book->annotation,
+            ];
+        });
+
         //return view('addBook');
-        return Book::all();
+        //return Book::all();*/
     }
 
     // @route /books/{id}

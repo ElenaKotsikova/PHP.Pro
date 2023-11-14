@@ -45,6 +45,12 @@
             <label for="annotation" class="form-label">Анатация книги</label>
             <input type="text" class="form-control" name="annotation" id="annotation" aria-describedby="annotation">
         </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="2">Two</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-success">Сохранить</button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

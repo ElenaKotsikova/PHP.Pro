@@ -15,6 +15,19 @@ class AuthorController extends Controller
         return $author;
     }
 
+    public function getAuthor(){
+
+        $authors = Author::all();
+
+        $result = $authors->map(function ($author) {
+            return [
+                'id'=>$author->id,
+                'name'=>$author->name,
+                ];
+        });
+        return $result;
+}
+
     public function show($id){
 
         $author = Author::where('id', $id)
