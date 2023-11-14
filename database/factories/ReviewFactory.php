@@ -20,9 +20,7 @@ class ReviewFactory extends Factory
     {
         return [
            'text' => fake()->sentence(),
-            'rate' => numeric(1),
-            'book_id' => Book::factory(),
-            'user_id'=>User::factory()
+            'rate' => fake()->numberBetween(1, 5),
         ];
     }
 }
