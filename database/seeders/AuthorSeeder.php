@@ -20,7 +20,7 @@ class AuthorSeeder extends Seeder
             ->has(
               Book::factory(rand(2,5))
                  ->has(Image::factory(rand(1,3)))
-                 ->has(Review::factory(5)->for(User::factory()))
+                  ->has(Review::factory(5)->for(User::factory()))
              )
              ->create();
     }
