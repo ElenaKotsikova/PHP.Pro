@@ -20,7 +20,7 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'page_number', 'annotation' , 'author_id', 'status',
+        'title', 'page_number', 'annotation' , 'author_id','publisher_id' ,'status',
     ];
     protected $casts = [
         'status' => BookStatus::class,

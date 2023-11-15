@@ -64,10 +64,10 @@ class BookController extends Controller
             'publisher_id'=>request()->integer('publishers'),
             'author_id'=>request()->integer('authors'),
         ]);
-       //dd($book_save);
+
         $book_save->save();
 
-       return redirect()->route('form');
+       return redirect()->route('books.index');
     }
 
     public function reviewStore(Book $book)
