@@ -6,7 +6,7 @@
                     <a class="nav-link " href="#">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"  href="{{route('form')}}">Книги</a>
+                    <a class="nav-link active"  href="{{route('books.index')}}">Книги</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Авторы</a>

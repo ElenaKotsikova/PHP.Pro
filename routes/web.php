@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -19,19 +20,19 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/addForm',function (){
+/*Route::get('/addForm',function (){
     return view('addBook');
-})->name('form');
+})->name('form');*/
 
 //Route::post('/addForm/submit','saveForm')->name('addFormSub');
-
-
 
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/{id}', 'show')->name('book');
-    Route::get('/author','getAuthor')->name('dropdown');
-    Route::post('/addForm','saved')->name('AddBook');
+    Route::post('/','saved')->name('AddBook');
 });
 
 
+/*Route::controller(AuthorController::class)->group(function (){
+    Route::get('/addForm','index')->name('dropdown');
+});*/

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Resources\BookListResource;
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Publisher;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -29,21 +31,22 @@ class BookController extends Controller
     // @route /books
     public function index()
     {
+        $authors = Author::all();
+        $publishers = Publisher::all();
 
         //return BookListResource::collection()
 
-        $books= Book::all();
+        //$books= Book::all();
 
-        $result = $books->map(function ($book) {
+       /* $result = $books->map(function ($book) {
             return [
                 'id'=>$book->id,
                 'title'=>$book->title,
                 'annotation'=>$book->annotation,
             ];
-        });
+        });*/
 
-        //return view('addBook');
-        //return Book::all();*/
+        return view('addBook',['authors'=>$authors],['publishers'=>$publishers]);
     }
 
     // @route /books/{id}
@@ -58,10 +61,14 @@ class BookController extends Controller
             'title'=>request()->input('title'),
             'page_number'=>request()->integer('page_number'),
             'annotation'=>request()->input('annotation'),
-        ]);
-        $book_save->save();
+            'publisher_id'=>request()->integer('publishers'),
+            'author_id'=>request()->integer('authors'),
 
-        return redirect()->route('form');
+        ]);
+        dd($book_save);
+        //$book_save->save();
+
+        //return redirect()->route('form');
     }
 
     public function reviewStore(Book $book)

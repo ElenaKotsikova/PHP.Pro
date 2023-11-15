@@ -31,7 +31,7 @@
         @endauth
     </div>
     @endif
-    <form action="{{route('AddBook')}}" method="post">
+    <form action="{{route('books.index')}}" method="post">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Название книги</label>
@@ -46,10 +46,10 @@
             <input type="text" class="form-control" name="annotation" id="annotation" aria-describedby="annotation">
         </div>
         <div class="mb-3">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="2">Two</option>
-            </select>
+            @include('selectauthor')
+        </div>
+        <div class="mb-3">
+            @include('selectpublisher')
         </div>
         <button type="submit" class="btn btn-success">Сохранить</button>
     </form>

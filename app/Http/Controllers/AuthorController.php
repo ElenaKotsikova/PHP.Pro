@@ -10,23 +10,11 @@ class AuthorController extends Controller
 {
     public function index(){
 
-        $author = Author::all();
-
-        return $author;
-    }
-
-    public function getAuthor(){
-
         $authors = Author::all();
 
-        $result = $authors->map(function ($author) {
-            return [
-                'id'=>$author->id,
-                'name'=>$author->name,
-                ];
-        });
-        return $result;
-}
+        return view('addBook',['authors'=>$authors]);
+    }
+
 
     public function show($id){
 

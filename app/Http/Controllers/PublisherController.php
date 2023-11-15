@@ -12,7 +12,7 @@ class PublisherController extends Controller
 
         $publisher = Publisher::all();
 
-        return $publisher;
+        return view('selectpublisher',['publishers'=>$publisher]);
     }
 
     public function show($id)
