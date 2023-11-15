@@ -63,12 +63,11 @@ class BookController extends Controller
             'annotation'=>request()->input('annotation'),
             'publisher_id'=>request()->integer('publishers'),
             'author_id'=>request()->integer('authors'),
-
         ]);
-        dd($book_save);
-        //$book_save->save();
+       //dd($book_save);
+        $book_save->save();
 
-        //return redirect()->route('form');
+       return redirect()->route('form');
     }
 
     public function reviewStore(Book $book)
