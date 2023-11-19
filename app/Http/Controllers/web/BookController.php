@@ -11,18 +11,11 @@ class BookController extends Controller
 {
     public function index()
     {
-        $authors = Author::all();
-        $publishers = Publisher::all();
+        $book = new Book();
 
-        /*  $result_author =$authors->map(function ($author){
-           return[
-               'id' => $author->id,
-               'name'=>$author->name,
-           ];
-        });
-        */
+        //$author = new AuthorController();
 
-        // return view('addBook',['authors'=>$authors],['publishers'=>$publishers]);
+       return view('addBook',['book'=>$book]);
     }
 
     public function saved()

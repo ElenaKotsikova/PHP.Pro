@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
     public function index(){
+
         $authors = Author::all();
 
         $result_author =$authors->map(function ($author){
@@ -18,8 +19,8 @@ class AuthorController extends Controller
             ];
         });
 
-        dd($result_author);
+        //dd($result_author);
 
-
+       // return $result_author;
     }
 }
