@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\web\AuthorController;
+use App\Http\Controllers\web\BookController;
+use App\Http\Controllers\web\PublisherController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +30,14 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/{id}', 'show')->name('book');
     Route::post('/','saved')->name('AddBook');
+    Route::controller(AuthorController::class)->group(function (){
+        Route::get('/','index')->name('books.index');
+    });
+    Route::controller(PublisherController::class)->group(function (){
+        Route::get('/','index')->name('books.index');
+    });
 });
 
 
-/*Route::controller(AuthorController::class)->group(function (){
-    Route::get('/addForm','index')->name('dropdown');
-});*/
+
+

@@ -31,12 +31,9 @@ class BookController extends Controller
     // @route /books
     public function index()
     {
-        $authors = Author::all();
-        $publishers = Publisher::all();
-
         //return BookListResource::collection()
 
-        //$books= Book::all();
+        $books= Book::all();
 
        /* $result = $books->map(function ($book) {
             return [
@@ -46,7 +43,7 @@ class BookController extends Controller
             ];
         });*/
 
-        return view('addBook',['authors'=>$authors],['publishers'=>$publishers]);
+
     }
 
     // @route /books/{id}
@@ -55,20 +52,6 @@ class BookController extends Controller
         return $book;
     }
 
-    public function saved()
-    {
-        $book_save= new Book([
-            'title'=>request()->input('title'),
-            'page_number'=>request()->integer('page_number'),
-            'annotation'=>request()->input('annotation'),
-            'publisher_id'=>request()->integer('publishers'),
-            'author_id'=>request()->integer('authors'),
-        ]);
-
-        $book_save->save();
-
-       return redirect()->route('books.index');
-    }
 
     public function reviewStore(Book $book)
     {

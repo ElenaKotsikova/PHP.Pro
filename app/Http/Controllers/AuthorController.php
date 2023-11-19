@@ -12,7 +12,7 @@ class AuthorController extends Controller
 
         $authors = Author::all();
 
-        return view('addBook',['authors'=>$authors]);
+        return $authors;
     }
 
 
