@@ -30,14 +30,16 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/{id}', 'show')->name('book');
     Route::post('/','saved')->name('AddBook');
-    Route::controller(AuthorController::class)->group(function (){
-        Route::get('/','index')->name('books.index');
-    });
-    Route::controller(PublisherController::class)->group(function (){
-        Route::get('/','index')->name('books.index');
-    });
+
+
 });
 
+Route::controller(PublisherController::class)->group(function (){
+    Route::get('/','index')->name('publishers.index');
+});
 
+Route::controller(AuthorController::class)->group(function (){
+    Route::get('/','index')->name('author.index');
+});
 
 
