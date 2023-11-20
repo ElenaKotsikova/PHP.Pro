@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Facades\BookFacade;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Book\StoreBookRequest;
+use App\Http\Resources\BookResource;
 use App\Models\Author;
 use App\Http\Controllers\web\AuthorController;
 use App\Models\Book;
 use App\Models\Publisher;
+use Illuminate\Http\JsonResponse;
 
 class BookController extends Controller
 {
@@ -38,6 +42,19 @@ class BookController extends Controller
 
         return redirect()->route('BookForm');
     }
+
+    public function store(StoreBookRequest $request)
+    {
+        $book = BookFacade::store($request);
+
+        return redirect('update');
+    }
+
+    public function update(Book $book)
+    {
+        return view('addBook',['book' => $book]);
+    }
+
 
 
 }

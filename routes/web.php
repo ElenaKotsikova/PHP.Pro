@@ -26,6 +26,9 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/',[PublisherController::class,'index'])->name('publishers');
     Route::get('/{id}', 'show')->name('book');
     Route::post('/','saved')->name('AddBook');
+    Route::post('/', 'store')->name('books.store');
+    Route::put('/{book}', 'update')->name('books.update');
+    Route::patch('/{book}', 'update')->name('books.update');
 });
 
 
