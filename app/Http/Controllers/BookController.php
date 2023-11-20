@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Facades\BookFacade;
 use App\Http\Requests\Book\StoreBookRequest;
+use App\Http\Requests\Book\StoreReviewRequest;
 use App\Http\Resources\BookListResource;
-use App\Models\Author;
+use App\Http\Resources\BookResource;
+use App\Http\Resources\ReviewResource;
 use App\Models\Book;
-use App\Models\Publisher;
-use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-/**
- * @property-read Review $reviews
- */
 
 class BookController extends Controller
 {
@@ -27,100 +24,43 @@ class BookController extends Controller
         );
     }
 
-
     // @route /books
-    public function index()
+    public function index():AnonymousResourceCollection
     {
-        //return BookListResource::collection()
-
-        $books= Book::all();
-
-       /* $result = $books->map(function ($book) {
-            return [
-                'id'=>$book->id,
-                'title'=>$book->title,
-                'annotation'=>$book->annotation,
-            ];
-        });*/
-
-
+        return BookListResource::collection(
+            BookFacade::getFacadeApplication()
+        );
     }
 
     // @route /books/{id}
-    public function show(Book $book): Book
+    public function show(Book $book): BookResource
     {
-        return $book;
+        return new BookResource($book);
     }
 
 
-    public function reviewStore(Book $book)
+    public function reviewStore(Book $book,StoreReviewRequest $request):ReviewResource
     {
-        /** @var Review $review */
-        $review = auth()->user()->reviews()->create([
-            'text' => request()->input('text'),
-            'rate' => request()->integer('rate'),
-            'book_id' => $book->id,
-        ]);
-
-        return $review;
+        return new ReviewResource(
+            BookFacade::setBook($book)->createReview($request)
+        );
     }
 
 
     public function store(StoreBookRequest $request): JsonResponse
     {
-        //        dd($request);
-        $files = $request->file('images');
+        $book = BookFacade::store($request);
 
-        $book = new Book([
-            'title' => request()->input('title'),
-            'page_number' => request()->integer('page_number'),
-            'annotation' => request()->input('annotation'),
-            'author_id' => request()->integer('author_id'),
-        ]);
-
-        $book->save();
-
-        foreach ($files as $file) {
-            $path = $file->storePublicly();
-
-            $book->images()->create([
-                'url' => Storage::url($path),
-            ]);
-        }
-
-        return response()->json($book->id, 201);
+        return response()->json(new BookResource($book), 201);
     }
 
-    public function update(Book $book): Book
+    public function update(Book $book): BookResource
     {
-        $data = [];
-
-        if (request()->method() === 'PUT') {
-            $data = [
-                'title' => request()->input('title'),
-                'page_number' => request()->integer('page_number'),
-                'annotation' => request()->input('annotation'),
-                'author_id' => request()->integer('author_id'),
-            ];
-        } else {
-            if (request()->has('title')) {
-                $data['title'] = request()->input('title');
-            }
-            if (request()->has('page_number')) {
-                $data['page_number'] = request()->integer('page_number');
-            }
-            if (request()->has('annotation')) {
-                $data['annotation'] = request()->input('annotation');
-            }
-            if (request()->has('author_id')) {
-                $data['author_id'] = request()->integer('author_id');
-            }
-        }
-
-        $book->update($data);
-
-        return $book;
+        return new BookResource(
+            BookFacade::setBook($book)->update()
+        );
     }
+
 
 
 }

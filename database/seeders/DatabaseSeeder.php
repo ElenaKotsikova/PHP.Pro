@@ -19,15 +19,5 @@ class DatabaseSeeder extends Seeder
             AuthorSeeder::class,
             PublisherSeeder::class,
         ]);
-
-      /*  $this->call([
-            ImageSeeder::class
-        ]);
-        $this->call([
-            ReviewSeeder::class
-        ]);
-        $this->call([
-            User::class
-        ]);*/
     }
 }
