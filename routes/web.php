@@ -19,28 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
-/*Route::get('/addForm',function (){
-    return view('addBook');
-})->name('form');*/
-
-//Route::post('/addForm/submit','saveForm')->name('addFormSub');
-
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
-   // Route::get('/',[AuthorController::class,'index'])->name('authors');
+    Route::get('/bookform','create')->name('BookForm');
+    Route::get('/',[AuthorController::class,'index'])->name('authors');
+    Route::get('/',[PublisherController::class,'index'])->name('publishers');
     Route::get('/{id}', 'show')->name('book');
     Route::post('/','saved')->name('AddBook');
-
-
 });
 
-/*Route::controller(PublisherController::class)->prefix('/books')->group(function (){
-    Route::get('/','index')->name('publishers.index');
-});
-
-Route::controller(AuthorController::class)->prefix('/books')->group(function (){
-    Route::get('/','index')->name('authors.index');
-});*/
 
 

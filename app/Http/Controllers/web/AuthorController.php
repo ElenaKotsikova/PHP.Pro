@@ -18,9 +18,6 @@ class AuthorController extends Controller
                 'name'=>$author->name,
             ];
         });
-
-        //dd($result_author);
-
-       // return $result_author;
+        return $result_author;
     }
 }

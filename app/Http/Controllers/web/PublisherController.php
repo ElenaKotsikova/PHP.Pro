@@ -18,6 +18,6 @@ class PublisherController extends Controller
                 'name'=>$publisher->name,
             ];
         });
-        dd($result_publisher);
+       return $result_publisher;
     }
 }
