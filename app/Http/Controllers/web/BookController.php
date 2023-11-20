@@ -20,6 +20,7 @@ class BookController extends Controller
     }
 
     public function create(){
+
         $book = new Book();
         $authors = new AuthorController();
         $publishers = new PublisherController();
@@ -37,24 +38,23 @@ class BookController extends Controller
             'author_id'=>request()->integer('authors'),
         ]);
 
-
         $book_save->save();
 
         return redirect()->route('BookForm');
     }
 
-    public function store(StoreBookRequest $request)
+   /* public function store(StoreBookRequest $request)
     {
         $book = BookFacade::store($request);
 
         return redirect('update');
     }
-
-    public function update(Book $book)
+*/
+   /* public function update(Book $book)
     {
         return view('addBook',['book' => $book]);
     }
-
+*/
 
 
 }

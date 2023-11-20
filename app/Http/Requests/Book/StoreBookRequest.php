@@ -3,10 +3,10 @@
 namespace App\Http\Requests\Book;
 
 use App\Enums\BookStatus;
-use App\Http\Requests\ApiRequest;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class StoreBookRequest extends ApiRequest
+class StoreBookRequest extends FormRequest
 {
     public function rules(): array
     {
