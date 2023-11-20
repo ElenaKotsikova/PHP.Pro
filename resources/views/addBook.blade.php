@@ -46,10 +46,10 @@
             <input type="text" class="form-control" name="annotation" id="annotation" aria-describedby="annotation">
         </div>
         <div class="mb-3">
-            @include('selectauthor')
+
         </div>
         <div class="mb-3">
-            @include('selectpublisher')
+
         </div>
         <button type="submit" class="btn btn-success">Сохранить</button>
     </form>
