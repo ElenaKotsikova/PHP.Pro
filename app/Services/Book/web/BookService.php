@@ -6,7 +6,6 @@ use App\Http\Requests\web\Book\StoreBookRequest;
 use App\Http\Requests\web\Book\StoreReviewRequest;
 use App\Models\Book;
 use App\Models\Review;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -14,7 +13,7 @@ class BookService
 {
     private Book $book;
 
-    public function store(StoreBookRequest $request)
+    public function store(StoreBookRequest $request):Book
     {
        // $files = $request->file('images', []);
 
