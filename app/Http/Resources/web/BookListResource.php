@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\web;
 
-use App\Models\Review;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin  Review
+ *@mixin Book
  */
 
-class ReviewResource extends JsonResource
+class BookListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,9 +20,9 @@ class ReviewResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'   => $this->id,
-            'text' => $this->text,
-            'rate' => $this->rate,
+            'id'=>$this->id,
+            'title'=>$this->title,
+            'annotation'=>$this->annotation,
         ];
     }
 }

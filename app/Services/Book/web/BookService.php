@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Services\Book\web;
+
+use App\Http\Requests\web\Book\StoreBookRequest;
+use App\Http\Requests\web\Book\StoreReviewRequest;
+use App\Models\Book;
+use App\Models\Review;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
+
+
+class BookService
+{
+    private Book $book;
+
+    public function store(StoreBookRequest $request)
+    {
+       // $files = $request->file('images', []);
+
+        $book = new Book([
+            'title'=>request()->input('title'),
+            'page_number'=>request()->integer('page_number'),
+            'annotation'=>request()->input('annotation'),
+            'publisher_id'=>request()->integer('publishers'),
+            'author_id'=>request()->integer('authors'),
+        ]);
+        dd($book);
+
+        //$book->save();
+
+       /* foreach ($files as $file) {
+            $path = $file->storePublicly();
+
+            $book->images()->create([
+                'url' => Storage::url($path),
+            ]);
+        }*/
+
+       // return $book;
+    }
+
+
+    public function update(): Book
+    {
+        $data = [];
+
+        if (request()->method() === 'PUT') {
+            $data = [
+                'title' => request()->input('title'),
+                'page_number' => request()->integer('page_number'),
+                'annotation' => request()->input('annotation'),
+                'publisher_id'=>request()->integer('publishers'),
+                'author_id' => request()->integer('author_id'),
+            ];
+        } else {
+            if (request()->has('title')) {
+                $data['title'] = request()->input('title');
+            }
+            if (request()->has('page_number')) {
+                $data['page_number'] = request()->integer('page_number');
+            }
+            if (request()->has('annotation')) {
+                $data['annotation'] = request()->input('annotation');
+            }
+            if (request()->has('publisher_id')) {
+                $data['publisher_id'] = request()->integer('publisher_id');
+            }
+            if (request()->has('author_id')) {
+                $data['author_id'] = request()->integer('author_id');
+            }
+        }
+
+        $this->book->update($data);
+
+        return $this->book;
+    }
+
+    public function createReview(StoreReviewRequest $request): Review
+    {
+        /** @var Review $review */
+        return auth()->user()->reviews()->create([
+            'text' => $request->input('text'),
+            'rate' => $request->integer('rate'),
+            'book_id' => $this->book->id,
+        ]);
+    }
+
+    public function setBook(Book $book): self
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+
+}

@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Facades\BookFacade;
+use App\Facades\web\BookFacade;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Book\StoreBookRequest;
-use App\Http\Resources\BookResource;
-use App\Models\Author;
-use App\Http\Controllers\web\AuthorController;
+use App\Http\Requests\web\Book\StoreBookRequest;
+use App\Http\Resources\web\BookResource;
+use App\Http\Resources\web\BookListResource;
 use App\Models\Book;
-use App\Models\Publisher;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index():AnonymousResourceCollection
     {
+        return BookListResource::collection(
+            BookFacade::getFacadeApplication()
+        );
 
+    }
+
+    public function show(Book $book): BookResource
+    {
+        return new BookResource($book);
     }
 
     public function create(){
@@ -28,7 +34,7 @@ class BookController extends Controller
         return view('addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
     }
 
-    public function saved()
+    /*public function saved()
     {
         $book_save= new Book([
             'title'=>request()->input('title'),
@@ -41,20 +47,22 @@ class BookController extends Controller
         $book_save->save();
 
         return redirect()->route('BookForm');
-    }
+    }*/
 
-   /* public function store(StoreBookRequest $request)
+    public function store(StoreBookRequest $request)
     {
-        $book = BookFacade::store($request);
 
-        return redirect('update');
+        //$book = BookFacade::s
+        dd($request);
+
+       // return redirect('update');
     }
-*/
+
    /* public function update(Book $book)
     {
-        return view('addBook',['book' => $book]);
-    }
-*/
+        dd($book);
+        //return view('addBook',['book' => $book]);
+    }*/
 
 
 }

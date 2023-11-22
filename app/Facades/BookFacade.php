@@ -2,7 +2,7 @@
 
 namespace App\Facades;
 
-use App\Http\Requests\Book\StoreBookRequest;
+use App\Http\Requests\web\Book\StoreBookRequest;
 use App\Models\Book;
 use Illuminate\Support\Facades\Facade;
 
