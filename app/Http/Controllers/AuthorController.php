@@ -45,7 +45,14 @@ class AuthorController extends Controller
 
     public function  store()
     {
-         dd(request());
+         $author = new Author([
+             'surname'=>request()->input('surname'),
+             'name'=>request()->input('name'),
+             'patronymic'=>request()->input('patronymic'),
+         ]);
+
+         $author->save();
+         return redirect()->route('author.index');
     }
 
 }
