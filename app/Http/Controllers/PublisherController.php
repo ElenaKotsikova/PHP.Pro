@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\api\Controller;
 use App\Models\Publisher;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PublisherController extends Controller
 {
@@ -12,19 +11,12 @@ class PublisherController extends Controller
 
         $publishers = Publisher::all();
 
-
-
-        //return view('selectpublisher',['publishers'=>$publisher]);
-    }
-
-    public function show($id)
-    {
-        $publisher = Publisher::where('id', $id)
-            ->first();
-
-      if($publisher === null){
-          throw new NotFoundHttpException();
-      }
-        return $publisher;
+        $result_publisher =$publishers->map(function ($publisher){
+            return[
+                'id' => $publisher->id,
+                'name'=>$publisher->name,
+            ];
+        });
+       return $result_publisher;
     }
 }

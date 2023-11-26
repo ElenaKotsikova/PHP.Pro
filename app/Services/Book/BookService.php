@@ -7,42 +7,37 @@ use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Requests\Book\StoreReviewRequest;
 use App\Models\Book;
 use App\Models\Review;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Storage;
+
+
 
 class BookService
 {
     private Book $book;
 
-    public function getPublishedBooks(): Collection
+    public function store():Book
     {
-        return Book::query()
-            ->where(['status' => BookStatus::Published])
-            ->get();
-    }
-    public function store(StoreBookRequest $request): Book
-    {
-        $files = $request->file('images', []);
-
+        // $files = $request->file('images', []);
         $book = new Book([
-            'title' => $request->input('title'),
-            'page_number' => $request->input('page_number'),
-            'annotation' => $request->input('annotation'),
-            'author_id' => $request->integer('author_id'),
+            'title' => request()->input('title'),
+            'page_number' => request()->integer('page_number'),
+            'annotation' => request()->input('annotation'),
+            'publisher_id' => request()->integer('publishers'),
+            'author_id' => request()->integer('authors'),
         ]);
 
         $book->save();
 
-        foreach ($files as $file) {
-            $path = $file->storePublicly();
+        /* foreach ($files as $file) {
+             $path = $file->storePublicly();
 
-            $book->images()->create([
-                'url' => Storage::url($path),
-            ]);
-        }
+             $book->images()->create([
+                 'url' => Storage::url($path),
+             ]);
+         }*/
 
-        return $book;
+         return $book;
     }
+
 
     public function update(): Book
     {
@@ -53,6 +48,7 @@ class BookService
                 'title' => request()->input('title'),
                 'page_number' => request()->integer('page_number'),
                 'annotation' => request()->input('annotation'),
+                'publisher_id' => request()->integer('publishers'),
                 'author_id' => request()->integer('author_id'),
             ];
         } else {
@@ -64,6 +60,9 @@ class BookService
             }
             if (request()->has('annotation')) {
                 $data['annotation'] = request()->input('annotation');
+            }
+            if (request()->has('publisher_id')) {
+                $data['publisher_id'] = request()->integer('publisher_id');
             }
             if (request()->has('author_id')) {
                 $data['author_id'] = request()->integer('author_id');
@@ -91,5 +90,6 @@ class BookService
 
         return $this;
     }
+
 
 }

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\web\AuthorController;
-use App\Http\Controllers\web\BookController;
-use App\Http\Controllers\web\PublisherController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\PublisherController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+    return view('home');
+})->name('home.index');
 
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
@@ -25,11 +26,18 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/',[AuthorController::class,'index'])->name('authors');
     Route::get('/',[PublisherController::class,'index'])->name('publishers');
     Route::get('/{id}', 'show')->name('book');
-    //Route::post('/','store')->name('AddBook');
-   // Route::post('/', 'store')->name('books.store');
-    //Route::put('/{book}', 'update')->name('books.update');
-   // Route::patch('/{book}', 'update')->name('books.update');
+    Route::post('/bookform','store')->name('AddBook');
+    Route::put('/{book}', 'update')->name('books.update');
+    Route::patch('/{book}', 'update')->name('books.update');
 });
 
 
+Route::controller(AuthorController::class)->prefix('/authors')->group(function (){
+   Route::get('/','full_index_author')->name('author.index');
+   Route::get('/authorform','create')->name('AuthorForm');
+   Route::post('/store','store')->name('author.store');
+   Route::get('/{author}','show')->name('author.show');
+
+
+});
 

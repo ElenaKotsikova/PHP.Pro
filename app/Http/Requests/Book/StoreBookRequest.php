@@ -14,9 +14,8 @@ class StoreBookRequest extends FormRequest
             'title' => 'required',
             'page_number' => 'integer',
             'annotation' => ['string'],
+            'publisher_id' => ['required'],
             'author_id' => ['required'],
-            'status' => new Enum(BookStatus::class),
-            'images.*' => ['image'],
         ];
     }
 }
