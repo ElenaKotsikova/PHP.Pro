@@ -43,16 +43,40 @@ class AuthorController extends Controller
        return view('author/addAuthor',['author'=>$author]);
     }
 
-    public function  store()
+    public function  store(StoreAuthorRequest $request):RedirectResponse
     {
          $author = new Author([
-             'surname'=>request()->input('surname'),
-             'name'=>request()->input('name'),
-             'patronymic'=>request()->input('patronymic'),
+             'surname'=>$request->input('surname'),
+             'name'=>$request->input('name'),
+             'patronymic'=>$request->input('patronymic'),
          ]);
 
          $author->save();
          return redirect()->route('author.index');
+    }
+
+    public function update()
+    {
+        $data = [];
+
+        if (request()->method() === 'PUT') {
+            $data = [
+                'surname' => request()->input('surname'),
+                'name' => request()->integer('name'),
+                'patronymic' => request()->input('patronymic'),
+            ];
+        } else {
+            if (request()->has('surname')) {
+                $data['surname'] = request()->input('surname');
+            }
+            if (request()->has('name')) {
+                $data['name'] = request()->input('name');
+            }
+            if (request()->has('patronymic')) {
+                $data['patronymic'] = request()->integer('patronymic');
+            }
+        }
+        return view('AuthorForm',['author'=>$author]);
     }
 
 }

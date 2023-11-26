@@ -37,7 +37,8 @@ Route::controller(AuthorController::class)->prefix('/authors')->group(function (
    Route::get('/authorform','create')->name('AuthorForm');
    Route::post('/store','store')->name('author.store');
    Route::get('/{author}','show')->name('author.show');
-
+   Route::put('/{author}', 'update')->name('author.update');
+   Route::patch('/{author}', 'update')->name('author.update');
 
 });
 
