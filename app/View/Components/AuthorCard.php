@@ -13,6 +13,7 @@ class AuthorCard extends Component
 
     public function __construct($author)
     {
+        //dd($author);
         $this->author=$author;
     }
 
