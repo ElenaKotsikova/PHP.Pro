@@ -3,39 +3,43 @@
 namespace App\Services\Book;
 
 use App\Enums\BookStatus;
-use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Requests\Book\StoreReviewRequest;
 use App\Models\Book;
 use App\Models\Review;
-
-
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class BookService
 {
     private Book $book;
 
-    public function store():Book
+    public function getPublishedBooks(): Collection
     {
-        // $files = $request->file('images', []);
-        $book = new Book([
-            'title' => request()->input('title'),
-            'page_number' => request()->integer('page_number'),
-            'annotation' => request()->input('annotation'),
-            'publisher_id' => request()->integer('publishers'),
-            'author_id' => request()->integer('authors'),
-        ]);
+        return Book::query()
+            ->where(['status' => BookStatus::Published])
+            ->get();
+    }
+
+    public function store(CreateBookData $data):Book
+    {
+        $images = Arr::get($data->toArray(), 'images', []);
+
+        $book = new Book(
+            $data->except('images')->toArray()
+        );
 
         $book->save();
 
-        /* foreach ($files as $file) {
-             $path = $file->storePublicly();
+        foreach ($images as $image) {
+            $path = $image->storePublicly();
 
-             $book->images()->create([
-                 'url' => Storage::url($path),
-             ]);
-         }*/
+            $book->images()->create([
+                'url' => Storage::url($path),
+            ]);
+        }
 
-         return $book;
+        return $book;
     }
 
 

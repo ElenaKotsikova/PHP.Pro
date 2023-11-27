@@ -1,3 +1,17 @@
-<div>
-    <!-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant -->
+<<div class="book">
+    @if(!empty($book->images->first()))
+    <img src="{{ $book->images->first()->url }}" alt="Обложка">
+    @endif
+
+    <h3>
+        <a href="{{ route('books.show', ['book' => $book->id]) }}">
+            {{ $book->title }}
+        </a>
+    </h3>
+
+    <div class="author">{{ $book->author->name }} {{ $book->author->surname }}</div>
+
+    <div class="annotation">
+        {{ $book->annotation }}
+    </div>
 </div>

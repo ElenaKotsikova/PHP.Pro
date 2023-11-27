@@ -6,7 +6,7 @@
                     <a class="nav-link " href="{{route('home.index')}}">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  href="{{route('BookForm')}}">Книги</a>
+                    <a class="nav-link "  href="{{route('books.index')}}">Книги</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('author.index')}}">Авторы</a>

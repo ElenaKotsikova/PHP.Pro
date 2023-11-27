@@ -2,30 +2,44 @@
 
 namespace App\Console\Commands;
 
+use App\Facades\BookFacade;
+use App\Http\Requests\Book\StoreBookRequest;
+use App\Http\Resources\BookListResource;
 use App\Models\Book;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Console\Command;
 
-class BookLoadComand extends Command
+
+class BookLoadCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:book-load-comand';
+    protected $signature = 'app:book-load';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Loads book from file';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $book =Book::query()->where(['id'=>1])->first();
+        $data = file_get_contents(__DIR__ . '/book.json');
+        $data = json_decode($data, true);
+
+        $request = new StoreBookRequest($data);
+        $request->setValidator(Validator::make($data,$request->rules()));
+        $book = BookFacade::store(
+            $request->data()
+        );
+        dd($book);
     }
+
 }

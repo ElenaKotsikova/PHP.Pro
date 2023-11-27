@@ -13,18 +13,17 @@ use Illuminate\View\View;
 
 class BookController extends Controller
 {
-    public function index():AnonymousResourceCollection
+    public function index():View
     {
-        return BookListResource::collection(
-            BookFacade::getFacadeApplication()
-        );
+        $books = BookFacade::getPublishedBooks();
+        return view('books.index', ['books' => $books]);
 
     }
 
-    public function show(Book $book): BookResource
+    public function show(Book $book):View
     {
 
-        return new BookResource($book);
+        return view('books.show', ['book' => $book]);
     }
 
     public function create():View{
@@ -33,34 +32,23 @@ class BookController extends Controller
         $authors = new AuthorController();
         $publishers = new PublisherController();
 
-        return view('books/addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
+        return view('books.addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
     }
 
-    /*public function saved()
+
+
+    public function store(StoreBookRequest $request):RedirectResponse
     {
-        $book_save= new Book([
-            'title'=>request()->input('title'),
-            'page_number'=>request()->integer('page_number'),
-            'annotation'=>request()->input('annotation'),
-            'publisher_id'=>request()->integer('publishers'),
-            'author_id'=>request()->integer('authors'),
-        ]);
+        $book = BookFacade::store(
+            $request->data()
+        );
 
-        $book_save->save();
-
-        return redirect()->route('BookForm');
-    }*/
-
-    public function store()
-    {
-        $book = BookFacade::store();
-        return redirect()->back();
-       //return redirect()->action('App\Http\Controllers\BookController@update',$book);
+        return redirect()->route('books.show', ['book' => $book->id]);
     }
 
     public function update(Book $book)
     {
-        return view('addBook',['book' => $book]);
+        return view('books.addBook',['book' => $book]);
     }
 
 

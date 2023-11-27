@@ -15,7 +15,7 @@ class AuthorController extends Controller
     {
         $authors = Author::all();
 
-        return view('author/listauthor',['authors'=>$authors]);
+        return view('author.listauthor',['authors'=>$authors]);
     }
 
 
@@ -33,14 +33,14 @@ class AuthorController extends Controller
     }
     public function show(Author $author):View
     {
-        return view('author/author_show',['author'=>$author]);
+        return view('author.author_show',['author'=>$author]);
 
     }
 
     public function create():View
     {
        $author = new Author();
-       return view('author/addAuthor',['author'=>$author]);
+       return view('author.addAuthor',['author'=>$author]);
     }
 
     public function  store(StoreAuthorRequest $request):RedirectResponse

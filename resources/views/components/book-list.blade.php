@@ -1,3 +1,5 @@
-<div>
-    <!-- Very little is needed to make a happy life. - Marcus Aurelius -->
+<div class="book-list">
+    @foreach($books as $book)
+    <x-book-card :book="$book" />
+    @endforeach
 </div>
