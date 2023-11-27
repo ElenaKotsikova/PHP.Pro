@@ -55,7 +55,7 @@ class AuthorController extends Controller
          return redirect()->route('author.index');
     }
 
-    public function update()
+    public function update(Author $author)
     {
         $data = [];
 
