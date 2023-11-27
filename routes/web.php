@@ -25,10 +25,10 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/bookform','create')->name('BookForm');
     Route::get('/',[AuthorController::class,'index'])->name('authors');
     Route::get('/',[PublisherController::class,'index'])->name('publishers');
-    Route::get('/{id}', 'show')->name('book');
     Route::post('/bookform','store')->name('AddBook');
-    Route::put('/{book}', 'update')->name('books.update');
-    Route::patch('/{book}', 'update')->name('books.update');
+    Route::get('/{id}', 'show')->name('book.show');
+    //Route::put('/{book}', 'update')->name('books.update');
+    //Route::patch('/{book}', 'update')->name('books.update');
 });
 
 
@@ -37,8 +37,8 @@ Route::controller(AuthorController::class)->prefix('/authors')->group(function (
    Route::get('/authorform','create')->name('AuthorForm');
    Route::post('/store','store')->name('author.store');
    Route::get('/{author}','show')->name('author.show');
-   Route::put('/{author}', 'update')->name('author.update');
-   Route::patch('/{author}', 'update')->name('author.update');
+   //Route::put('/{author}', 'update')->name('author.update');
+   //Route::patch('/{author}', 'update')->name('author.update');
 
 });
 

@@ -33,7 +33,7 @@ class BookController extends Controller
         $authors = new AuthorController();
         $publishers = new PublisherController();
 
-        return view('addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
+        return view('books/addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
     }
 
     /*public function saved()
