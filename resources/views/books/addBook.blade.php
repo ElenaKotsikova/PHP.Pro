@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('content')
+<div class="form_book">
     <form action="{{route('AddBook')}}" method="post">
         @csrf
         <div class="mb-3">
@@ -12,7 +13,8 @@
         </div>
         <div class="mb-3">
             <label for="annotation" class="form-label">Анатация книги</label>
-            <input type="text" class="form-control" name="annotation" id="annotation" aria-describedby="annotation">
+            <textarea type="text" class="form-control" name="annotation" id="annotation" aria-describedby="annotation">
+            </textarea>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Обложка</label>
@@ -29,4 +31,5 @@
         </div>
         <button type="submit" class="btn btn-success">Сохранить</button>
     </form>
+</div>
 @endsection

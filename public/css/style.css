@@ -14,12 +14,18 @@ body > header {
 .main {
     width: 1080px;
     margin: 0 auto;
+    margin-top: 35px;
 }
 
 .form_author{
     width: 740px;
     margin: 0 auto;
 }
+.form_book{
+    width: 740px;
+    margin: 0 auto;
+}
+
 .save_author{
     margin-top: 15px;
 }
@@ -40,3 +46,26 @@ body > header {
 }
 
 
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book {
+    padding: .5rem;
+    margin: 1rem 0;
+    width: 250px;
+}
+
+.book img {
+    width: 240px;
+    height: 320px;
+}
+
+.author {
+    font-weight: bold;
+}
+
+.annotation {
+    text-align: justify;
+}

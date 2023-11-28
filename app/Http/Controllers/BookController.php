@@ -22,7 +22,6 @@ class BookController extends Controller
 
     public function show(Book $book):View
     {
-
         return view('books.show', ['book' => $book]);
     }
 
@@ -36,15 +35,30 @@ class BookController extends Controller
     }
 
 
-
-    public function store(StoreBookRequest $request):RedirectResponse
+    public function store(StoreBookRequest $request)
     {
+
+
+        $book = BookFacade::store(
+            $request->data()
+        );
+
+        //return redirect()->route('books.show', ['book' => $book->id]);
+    }
+
+
+
+
+   /* public function store(StoreBookRequest $request):RedirectResponse
+    {
+
+
         $book = BookFacade::store(
             $request->data()
         );
 
         return redirect()->route('books.show', ['book' => $book->id]);
-    }
+    }*/
 
     public function update(Book $book)
     {
@@ -53,5 +67,4 @@ class BookController extends Controller
 
 
 }
-
 

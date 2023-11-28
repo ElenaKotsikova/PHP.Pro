@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services\Book;
 
 //use Spatie\LaravelData\Attributes\MapInputName;

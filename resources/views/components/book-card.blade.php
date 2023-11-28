@@ -1,4 +1,4 @@
-<<div class="book">
+<div class="book">
     @if(!empty($book->images->first()))
     <img src="{{ $book->images->first()->url }}" alt="Обложка">
     @endif

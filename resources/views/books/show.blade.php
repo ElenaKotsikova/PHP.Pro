@@ -1,4 +1,4 @@
 @extends('layouts.default')
 @section('content')
-<x-book-list :books="$books" />
+<x-book-card :book="$book" />
 @endsection
