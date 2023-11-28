@@ -8,7 +8,10 @@ use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Resources\BookListResource;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
+use App\Services\Book\CreateBookData;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class BookController extends Controller
@@ -35,15 +38,20 @@ class BookController extends Controller
     }
 
 
-    public function store(StoreBookRequest $request)
+    public function store()
     {
 
-
-        $book = BookFacade::store(
+        $request = request();
+        dd(BookFacade::store(
             $request->data()
-        );
+        ));
 
-        //return redirect()->route('books.show', ['book' => $book->id]);
+       /* $book = BookFacade::store(
+           $request->data()
+       );*/
+
+
+        //return redirect()->route('books.show',['book' => $book->id]);
     }
 
 

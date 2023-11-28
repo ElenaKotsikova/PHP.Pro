@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
+
 class BookService
 {
     private Book $book;
@@ -20,6 +21,7 @@ class BookService
             ->where(['status' => BookStatus::Published])
             ->get();
     }
+
 
     public function store(CreateBookData $data):Book
     {
@@ -41,6 +43,29 @@ class BookService
 
         return $book;
     }
+
+    /*public function store(CreateBookData $data):Book
+    {
+
+        dd($data);
+        $images = Arr::get($data->toArray(), 'images', []);
+
+        $book = new Book(
+            $data->except('images')->toArray()
+        );
+
+        $book->save();
+
+        foreach ($images as $image) {
+            $path = $image->storePublicly();
+
+            $book->images()->create([
+                'url' => Storage::url($path),
+            ]);
+        }
+
+        return $book;
+    }*/
 
 
     public function update(): Book
