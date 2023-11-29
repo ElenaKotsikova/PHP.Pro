@@ -7,7 +7,9 @@ use App\Http\Controllers\api\Controller;
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Resources\BookListResource;
 use App\Http\Resources\BookResource;
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Publisher;
 use App\Services\Book\CreateBookData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -32,11 +34,15 @@ class BookController extends Controller
 
     public function create():View{
 
-        $book = new Book();
+        return view('books.create', [
+            'authors' => Author::query()->get(),
+            'publishers' => Publisher::query()->get()
+        ]);
+        /*$book = new Book();
         $authors = new AuthorController();
         $publishers = new PublisherController();
 
-        return view('books.addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
+        return view('books.addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);*/
     }
 
     public function store(StoreBookRequest $request): RedirectResponse
