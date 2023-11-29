@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 <div class="form_book">
-    <form action="{{route('AddBook')}}" method="post">
+    <form action="{{route('book.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Название книги</label>
@@ -18,18 +18,18 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Обложка</label>
-            <input type="file" class="form-control" name="images[]" multiple id="images" aria-describedby="images">
+            <input type="file" class="form-control" name="images[]" id="images[]" multiple aria-describedby="images[]">
         </div>
         <div class="mb-3">
-          @include('books/selectauthor')
+          @include('books.selectauthor')
         </div>
         <div class="mb-3">
-          @include('books/selectpublisher')
+          @include('books.selectpublisher')
         </div>
         <div class="mb-3">
-            @include('books/selectstatus')
+            @include('books.selectstatus')
         </div>
-        <button type="submit" class="btn btn-success">Сохранить</button>
+        <button  class="btn btn-success">Сохранить</button>
     </form>
 </div>
 @endsection

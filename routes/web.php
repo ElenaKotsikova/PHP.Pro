@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/bookform','create')->name('BookForm');
-    Route::post('/store','store')->name('AddBook');
+    Route::post('/','store')->name('book.store');
     Route::get('/{book}', 'show')->name('books.show');
     //Route::put('/{book}', 'update')->name('books.update');
     //Route::patch('/{book}', 'update')->name('books.update');

@@ -22,8 +22,7 @@ class BookService
             ->get();
     }
 
-
-    public function store(CreateBookData $data):Book
+    public function store(CreateBookData $data): Book
     {
         $images = Arr::get($data->toArray(), 'images', []);
 
@@ -43,30 +42,6 @@ class BookService
 
         return $book;
     }
-
-    /*public function store(CreateBookData $data):Book
-    {
-
-        dd($data);
-        $images = Arr::get($data->toArray(), 'images', []);
-
-        $book = new Book(
-            $data->except('images')->toArray()
-        );
-
-        $book->save();
-
-        foreach ($images as $image) {
-            $path = $image->storePublicly();
-
-            $book->images()->create([
-                'url' => Storage::url($path),
-            ]);
-        }
-
-        return $book;
-    }*/
-
 
     public function update(): Book
     {

@@ -9,7 +9,9 @@ use App\Http\Resources\BookListResource;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Services\Book\CreateBookData;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -37,41 +39,19 @@ class BookController extends Controller
         return view('books.addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);
     }
 
-
-    public function store()
+    public function store(StoreBookRequest $request): RedirectResponse
     {
-
-        $request = request();
-        dd(BookFacade::store(
-            $request->data()
-        ));
-
-       /* $book = BookFacade::store(
-           $request->data()
-       );*/
-
-
-        //return redirect()->route('books.show',['book' => $book->id]);
-    }
-
-
-
-
-   /* public function store(StoreBookRequest $request):RedirectResponse
-    {
-
-
         $book = BookFacade::store(
             $request->data()
         );
 
         return redirect()->route('books.show', ['book' => $book->id]);
-    }*/
+    }
 
-    public function update(Book $book)
+    /*public function update(Book $book)
     {
         return view('books.addBook',['book' => $book]);
-    }
+    }*/
 
 
 }
