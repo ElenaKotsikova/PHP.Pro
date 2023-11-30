@@ -26,7 +26,6 @@ class BookController extends Controller
         return view('books.index', ['books' => $books]);
 
     }
-
     public function show(Book $book):View
     {
         return view('books.show', ['book' => $book]);
@@ -34,15 +33,10 @@ class BookController extends Controller
 
     public function create():View{
 
-        return view('books.create', [
+        return view('books.addBook', [
             'authors' => Author::query()->get(),
             'publishers' => Publisher::query()->get()
         ]);
-        /*$book = new Book();
-        $authors = new AuthorController();
-        $publishers = new PublisherController();
-
-        return view('books.addBook',['book'=>$book],['authors'=>$authors->index(),'publishers'=>$publishers->index()]);*/
     }
 
     public function store(StoreBookRequest $request): RedirectResponse
