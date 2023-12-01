@@ -2,6 +2,6 @@
 <select class="form-control" id="authors" name="author_id">
     <option>Выберите Автора</option>
     @foreach($authors as $author)
-    <option name="authors"  value="{{ $author->id }}">{{$author->name}} {{$author->surname}</option>
+    <option name="authors"  value="{{ $author->id }}">{{$author->surname}} {{$author->name}}</option>
     @endforeach
 </select>

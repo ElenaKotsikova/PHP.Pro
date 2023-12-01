@@ -23,11 +23,11 @@ Route::get('/', function () {
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
     Route::get('/bookform','create')->name('BookForm');
-    //Route::get('/create', 'create')->name('book.create');
+    Route::get('/updateform/{book}','update_book_id')->name('updateForm');
     Route::post('/','store')->name('book.store');
     Route::get('/{book}', 'show')->name('books.show');
-    //Route::put('/{book}', 'update')->name('books.update');
-    //Route::patch('/{book}', 'update')->name('books.update');
+    Route::put('/{book}/update', 'update')->name('books.update');
+    Route::patch('/{book}/update', 'update')->name('books.update');
 });
 
 

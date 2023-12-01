@@ -48,10 +48,22 @@ class BookController extends Controller
         return redirect()->route('books.show', ['book' => $book->id]);
     }
 
-    /*public function update(Book $book)
+    public  function update_book_id(Book $book):View
     {
-        return view('books.addBook',['book' => $book]);
-    }*/
+        $boo_update =new Book();
+
+         dd($boo_update->find($book->id));
+        //return view('books.updateBook',['book' => $boo_update->find($book->id)]);
+    }
+
+    public function update(Book $book)
+    {
+       $book = BookFacade::update();
+       return redirect()->route('books.index');
+
+    }
+
+
 
 
 }
