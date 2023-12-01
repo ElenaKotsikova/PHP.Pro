@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-<x-author-list :authors="$authors"/>
+<x-author.author-list :authors="$authors"/>
     </tbody>
 </table>
 

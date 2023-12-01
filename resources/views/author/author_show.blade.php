@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-<x-author-card :author="$author" />
+<x-author.author-card :author="$author" />
     </tbody>
 </table>
 @endsection

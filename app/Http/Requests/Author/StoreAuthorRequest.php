@@ -10,9 +10,9 @@ class StoreAuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'surname'=>['required','string'],
-            'name' => ['required','string'],
-            'patronymic'=>['required','string'],
+            'surname'=>['required'],
+            'name' => ['required'],
+            'patronymic'=>['required'],
         ];
     }
 }
