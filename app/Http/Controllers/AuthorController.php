@@ -79,6 +79,36 @@ class AuthorController extends Controller
         return view('AuthorForm',['author'=>$author]);
     }
 
+    public function search(Request $request)
+    {
+        $authors = Author::query()
+            ->where('sername', 'like', "%$request->q%")
+            ->orWhere('name', 'like', "%$request->q%")
+            ->orWhere('patronymic', 'like', "%$request->q%")
+            ->get()
+        ;
+
+        return view('author.index', ['authors' => $books]);
+    }
+
+    public function filter(Request $request): View
+    {
+        $query = Author::query()
+            ->when($request->sername, function ($q) use ($request) {
+                $q->where('sername', 'like', "%$request->sername%");
+            })
+            ->when($request->name, function ($q) use ($request) {
+                $q->where('name', 'like', "%$request->name%");
+            })
+            ->when($request->patronymic, function ($q) use ($request) {
+                $q->where('patronymic', '=', $request->patronymic);
+            })
+        ;
+
+        return view('author.index', ['authors' => $query->get()]);
+    }
+
+
 }
 
 
