@@ -11,6 +11,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
 use App\Services\Book\CreateBookData;
+use App\Enums\BookStatus;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Routing\Redirector;
@@ -33,9 +34,35 @@ class BookController extends Controller
 
     public function create():View{
 
+        $statusList = [
+            [
+                'key' => BookStatus::Published,
+                'value' => 'Опубликована',
+            ],
+            [
+                'key' => BookStatus::Draft,
+                'value' => 'Черновик',
+            ],
+        ];
+
+        $authors = Author::query()->get()->map(function ($author) {
+            return [
+                'key' => $author->id,
+                'value' => "$author->name $author->surname",
+            ];
+        })->toArray();
+
+        $publishers = Publisher::query()->get()->map(function ($publisher) {
+            return [
+                'key' => $publisher->id,
+                'value' => "$publisher->name $publisher->surname",
+            ];
+        })->toArray();
+
         return view('books.addBook', [
-            'authors' => Author::query()->get(),
-            'publishers' => Publisher::query()->get()
+            'authors' => $authors,
+            'statusList' => $statusList,
+            'publishers' => $publishers,
         ]);
     }
 

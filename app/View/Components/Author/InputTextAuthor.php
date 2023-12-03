@@ -8,19 +8,18 @@ use Illuminate\View\Component;
 
 class InputTextAuthor extends Component
 {
-    /**
-     * Create a new component instance.
-     */
+    public bool $isInvalid = false;
     public function __construct(
         public string $label,
         public string $name,
         public string $id,
         public  string $type = 'text',
-        public string | null $error = null,
+        public string|null $value = '',
+        public array $errors = [],
 
     )
     {
-
+        $this->isInvalid = !empty($this->errors);
     }
 
     /**

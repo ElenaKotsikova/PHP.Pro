@@ -11,9 +11,14 @@ class InputSelect extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $label,
+        public string $id,
+        public string $name,
+        public array $options=[],
+    )
     {
-        //
+
     }
 
     /**
