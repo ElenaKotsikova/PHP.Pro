@@ -104,7 +104,7 @@ class BookController extends Controller
     public function filter(Request $request): View
     {
         $query = Book::query()
-            ->when($request->title, function (Builder $q) use ($request) {
+            ->when($request->title, function ($q) use ($request) {
                 $q->where('title', 'like', "%$request->title%");
             })
             ->when($request->annotation, function ($q) use ($request) {

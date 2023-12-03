@@ -7,7 +7,7 @@ use App\Http\Requests\Author\StoreAuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-
+use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
 
@@ -82,20 +82,20 @@ class AuthorController extends Controller
     public function search(Request $request)
     {
         $authors = Author::query()
-            ->where('sername', 'like', "%$request->q%")
+            ->where('surname', 'like', "%$request->q%")
             ->orWhere('name', 'like', "%$request->q%")
             ->orWhere('patronymic', 'like', "%$request->q%")
             ->get()
         ;
 
-        return view('author.index', ['authors' => $books]);
+        return view('author.index', ['authors' => $authors]);
     }
 
     public function filter(Request $request): View
     {
         $query = Author::query()
-            ->when($request->sername, function ($q) use ($request) {
-                $q->where('sername', 'like', "%$request->sername%");
+            ->when($request->surname, function ($q) use ($request) {
+                $q->where('surname', 'like', "%$request->surname%");
             })
             ->when($request->name, function ($q) use ($request) {
                 $q->where('name', 'like', "%$request->name%");
@@ -104,8 +104,8 @@ class AuthorController extends Controller
                 $q->where('patronymic', '=', $request->patronymic);
             })
         ;
-
-        return view('author.index', ['authors' => $query->get()]);
+         $query->orderBy('surname','desc');
+        return view('author.listauthor', ['authors' => $query->get()]);
     }
 
 
