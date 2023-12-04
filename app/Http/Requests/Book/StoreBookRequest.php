@@ -23,13 +23,13 @@ class StoreBookRequest extends FormRequest
     }
 
 
-    public function attributes(): array
+    /*public function attributes(): array
     {
         return [
             'title' => __('validation.attributes.book.title'),
             'page_number' => __('validation.attributes.book.page_number'),
         ];
-    }
+    }*/
 
     public function data(): CreateBookData
     {

@@ -74,6 +74,7 @@ class BookController extends Controller
 
     public function store(StoreBookRequest $request): RedirectResponse
     {
+        dd($request);
         $book = BookFacade::store(
             $request->data()
         );
