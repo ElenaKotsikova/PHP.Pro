@@ -5,13 +5,32 @@
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('home.index')}}">Главная</a>
                 </li>
+                @auth
                 <li class="nav-item">
                     <a class="nav-link "  href="{{route('books.index')}}">Книги</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('author.index')}}">Авторы</a>
                 </li>
+                @endauth
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.login') }}">Вход</a>
+                </li>
+                @endguest
+
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.logout') }}">Выход</a>
+                </li>
+                @endauth
             </ul>
         </div>
     </div>
+    @if (request()->path() === 'books')
+        @include ('search',['route_value'=> 'book.search'])
+    @endif
+    @if (request()->path() === 'authors')
+    @include ('search',['route_value'=> 'author.search'])
+    @endif
 </nav>

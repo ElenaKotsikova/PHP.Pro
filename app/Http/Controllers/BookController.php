@@ -18,9 +18,15 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-
+use Illuminate\Http\Request;
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->only(['store', 'create', ]);
+    }
+
+
     public function index():View
     {
         $books = BookFacade::getPublishedBooks();
@@ -101,7 +107,7 @@ class BookController extends Controller
         return view('books.index', ['books' => $books]);
     }
 
-    public function filter(Request $request): View
+   /* public function filter(Request $request): View
     {
         $query = Book::query()
             ->when($request->title, function ($q) use ($request) {
@@ -114,9 +120,10 @@ class BookController extends Controller
                 $q->where('page_number', '=', $request->page_number);
             })
         ;
+        $query->orderBy('title','desc');
 
         return view('books.index', ['books' => $query->get()]);
-    }
+    }*/
 
 
 

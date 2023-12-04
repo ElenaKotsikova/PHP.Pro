@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home.index');
+Route::get('/', BookController::class . '@index')->name('home.index');
 
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
@@ -44,5 +43,11 @@ Route::controller(AuthorController::class)->prefix('/authors')->group(function (
    //Route::put('/{author}', 'update')->name('author.update');
    //Route::patch('/{author}', 'update')->name('author.update');
 
+});
+
+Route::controller(UserController::class)->prefix('user')->group(function () {
+    Route::get('/login', 'login')->name('user.login');
+    Route::get('/logout', 'logout')->name('user.logout');
+    Route::post('/auth', 'auth')->name('user.auth');
 });
 

@@ -88,10 +88,10 @@ class AuthorController extends Controller
             ->get()
         ;
 
-        return view('author.index', ['authors' => $authors]);
+        return view('author.listauthor', ['authors' => $authors]);
     }
 
-    public function filter(Request $request): View
+   /* public function filter(Request $request): View
     {
         $query = Author::query()
             ->when($request->surname, function ($q) use ($request) {
@@ -105,8 +105,9 @@ class AuthorController extends Controller
             })
         ;
          $query->orderBy('surname','desc');
+
         return view('author.listauthor', ['authors' => $query->get()]);
-    }
+    }*/
 
 
 }
