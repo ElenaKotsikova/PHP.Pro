@@ -13,9 +13,10 @@ class InputSelect extends Component
      */
     public function __construct(
         public string $label,
-        public string $id,
         public string $name,
-        public array $options=[],
+        public string $id,
+        public array $options = [],
+        public string|null $value = '',
     )
     {
 
