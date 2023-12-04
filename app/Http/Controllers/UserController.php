@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         auth()->logout();
 
-        return redirect()->route('home');
+        return redirect()->route('home.index');
     }
 
     public function auth(): RedirectResponse
@@ -30,6 +30,6 @@ class UserController extends Controller
             return redirect()->route('user.login');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('home.index');
     }
 }
