@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
 use phpDocumentor\Reflection\Types\Static_;
 
 /**
- * @method static Book store()
+ * @method static Book store(CreateBookData $data)
  *@method static Collection getPublishedBooks()
  * @method static BookService setBook(Book $book)
  * @method static BookService update()
