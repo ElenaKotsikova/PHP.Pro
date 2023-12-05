@@ -22,15 +22,15 @@ class BookService
             ->get();
     }
 
-    public function store(CreateBookData $data): Book
+    public function store(): Book
     {
+        $data = request();
         $images = Arr::get($data->toArray(), 'images', []);
 
         $book = new Book(
-            $data->except('images')->toArray()
+            $data->except('images')
         );
-
-        $book->save();
+         $book->save();
 
         foreach ($images as $image) {
             $path = $image->storePublicly();

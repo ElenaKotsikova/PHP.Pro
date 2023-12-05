@@ -72,11 +72,11 @@ class BookController extends Controller
         ]);
     }
 
-    public function store(StoreBookRequest $request): RedirectResponse
+    public function store()
     {
-        dd($request);
+
         $book = BookFacade::store(
-            $request->data()
+            //$request->data()
         );
 
         return redirect()->route('books.show', ['book' => $book->id]);

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
   * @property string $surname
+ * @property string $name
+ * @property string $patronymic
  */
 
 class Author extends Model

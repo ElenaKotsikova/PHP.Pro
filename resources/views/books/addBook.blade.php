@@ -13,8 +13,8 @@
         <x-book.input-text : label="Обложка" : name="images[]"
                            : id="images" :type="'file'" :multiple="true"/>
         <x-book.input-select :label="'Статус'" :name="'status'" :id="'status'" :options="$statusList"/>
-        <x-book.input-select :label="'Авторы'" :name="'authors'" :id="'authors'" :options="$authors"/>
-        <x-book.input-select :label="'Публикации'" :name="'publishers'" :id="'publishers'" :options="$publishers"/>
+        <x-book.input-select :label="'Авторы'" :name="'author_id'" :id="'author'" :options="$authors"/>
+        <x-book.input-select :label="'Публикации'" :name="'publisher_id'" :id="'publisher'" :options="$publishers"/>
         <button  class="btn btn-success">Сохранить</button>
     </form>
 </div>
