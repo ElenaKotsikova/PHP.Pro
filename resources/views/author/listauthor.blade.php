@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<a  href="{{route('AuthorForm')}}" class="btn btn-primary add_author" role="button" >Добавление автора</a>
+<a  href="{{route('author.create')}}" class="btn btn-primary add_author" role="button" >Добавление автора</a>
 <table  class="table table-bordered author">
     <thead>
     <tr>

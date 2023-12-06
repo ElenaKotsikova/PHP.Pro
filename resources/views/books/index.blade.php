@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 @auth
-<a  href="{{route('BookForm')}}" class="btn btn-primary add_author" role="button" >Добавление книги</a>
+<a  href="{{route('book.create')}}" class="btn btn-primary add_author" role="button" >Добавление книги</a>
 @endauth
 <!--form class="d-flex filter"  action="{{route('book.filter')}}">
     <input

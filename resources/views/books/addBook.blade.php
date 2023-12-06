@@ -16,6 +16,8 @@
         <x-book.input-select :label="'Авторы'" :name="'author_id'" :id="'author'" :options="$authors"/>
         <x-book.input-select :label="'Публикации'" :name="'publisher_id'" :id="'publisher'" :options="$publishers"/>
         <button  class="btn btn-success">Сохранить</button>
+        <a  href="{{route('books.index')}}" class="btn btn-danger" role="button" >Отмена</a>
+
     </form>
 </div>
 @endsection

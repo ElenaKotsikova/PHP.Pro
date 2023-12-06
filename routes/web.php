@@ -20,8 +20,8 @@ Route::get('/', BookController::class . '@index')->name('home.index');
 
 Route::controller(BookController::class)->prefix('/books')->group(function () {
     Route::get('/', 'index')->name('books.index');
-    Route::get('/bookform','create')->name('BookForm');
-    Route::get('/updateform/{book}','update_book_id')->name('updateForm');
+    Route::get('/create','create')->name('book.create');
+   // Route::get('/updateform/{book}','update_book_id')->name('updateForm');
     Route::post('/','store')->name('book.store');
     Route::get('/search', 'search')->name('book.search');
     Route::get('/filter', 'filter')->name('book.filter');
@@ -34,7 +34,7 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
 Route::controller(AuthorController::class)->prefix('/authors')->group(function (){
     Route::get('/','index')->name('authors');
     Route::get('/','full_index_author')->name('author.index');
-    Route::get('/authorform','create')->name('AuthorForm');
+    Route::get('/create','create')->name('author.create');
     Route::post('/store','store')->name('author.store');
     Route::get('/search', 'search')->name('author.search');
     Route::get('/filter', 'filter')->name('author.filter');

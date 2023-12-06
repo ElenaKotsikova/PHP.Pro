@@ -12,7 +12,8 @@
         <x-author.input-text-author : label="Отчество" : name="patronymic"
                                     : id="patronymic" :value="old('patronymic')"
                                     :errors="$errors->get('patronymic')" />
-        <button type="submit" class="btn btn-success save_author">Сохранить</button>
+        <button type="submit" class="btn btn-success button_form_author">Сохранить</button>
+        <a  href="{{route('books.index')}}" class="btn btn-danger button_form_author " role="button" >Отмена</a>
     </form>
 </div>
 @endsection

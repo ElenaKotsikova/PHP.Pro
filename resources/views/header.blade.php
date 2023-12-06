@@ -27,7 +27,7 @@
             </ul>
         </div>
     </div>
-    @if (request()->path() === 'books' or request()->path() === 'books/search')
+    @if (request()->path() === '/' or request()->path() === 'books' or request()->path() === 'books/search')
         @include ('search',['route_value'=> 'book.search'])
     @endif
     @if (request()->path() === 'authors' or request()->path() === 'authors/search')
