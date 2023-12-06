@@ -4,6 +4,8 @@ namespace App\View\Components\Book;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
@@ -13,7 +15,7 @@ class BookList extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public LengthAwarePaginator $books)
+        public Collection $books)
     {
 
     }

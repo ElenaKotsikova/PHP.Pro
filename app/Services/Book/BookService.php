@@ -16,12 +16,11 @@ class BookService
 {
     private Book $book;
 
-    public function getPublishedBooks(): LengthAwarePaginator
+    public function getPublishedBooks(): Collection
     {
         return Book::query()
             ->where(['status' => BookStatus::Published])
-            ->paginate(4);
-            //->get();
+              ->get();
     }
 
     public function store(CreateBookData $data): Book
