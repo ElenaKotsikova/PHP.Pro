@@ -16,6 +16,6 @@ use Illuminate\Database\Seeder;
      */
     public function run(): void
     {
-        Book::factory(5)->create();
+        Book::factory(45)->create();
     }
   }

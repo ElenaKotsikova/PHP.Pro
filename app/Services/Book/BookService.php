@@ -7,19 +7,21 @@ use App\Http\Requests\Book\StoreReviewRequest;
 use App\Models\Book;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
-
 
 class BookService
 {
     private Book $book;
 
-    public function getPublishedBooks(): Collection
+    public function getPublishedBooks(): LengthAwarePaginator
     {
         return Book::query()
             ->where(['status' => BookStatus::Published])
-            ->get();
+            ->paginate(4);
+            //->get();
     }
 
     public function store(CreateBookData $data): Book

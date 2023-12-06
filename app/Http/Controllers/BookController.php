@@ -6,19 +6,20 @@ use App\Facades\BookFacade;
 use App\Http\Controllers\api\Controller;
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Resources\BookListResource;
-use App\Http\Resources\BookResource;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
 use App\Services\Book\CreateBookData;
 use App\Enums\BookStatus;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+
+
 class BookController extends Controller
 {
     public function __construct()
@@ -30,6 +31,7 @@ class BookController extends Controller
     public function index():View
     {
         $books = BookFacade::getPublishedBooks();
+
         return view('books.index', ['books' => $books]);
 
     }

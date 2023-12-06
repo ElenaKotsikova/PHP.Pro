@@ -14,4 +14,7 @@
     <div class="annotation">
         {{ $book->annotation }}
     </div>
+    <div class="publishers">
+        {{ $book->annotation }}
+    </div>
 </div>
