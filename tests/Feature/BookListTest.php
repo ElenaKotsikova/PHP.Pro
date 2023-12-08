@@ -2,21 +2,23 @@
 
 namespace Tests\Feature;
 
+use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class BookTest extends TestCase
+class BookListTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
-    protected function setUp():void{
-
-    }
-    public function testCreateB(): void
+    public function testIndexBooks(): void
     {
-        $response = $this->get('/');
+
+
+        //$view = $this->view('home.index');
+
+        $response = $this->get('/books');
 
         $response->assertStatus(200);
     }

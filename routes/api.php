@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(ApiBookController::class)->prefix('/books')->group(function () {
-    Route::get('/', 'index')->name('books.index');
-    Route::get('/{id}', 'show')->name('book');
-    Route::post('/', 'store')->name('books.store');
-    Route::post('/','saved')->name('AddBook');
-    Route::put('/{book}', 'update')->name('books.update');
-    Route::patch('/{book}', 'update')->name('books.update');
+    Route::get('/', 'index')->name('api.books.index');
+    Route::get('/{id}', 'show')->name('api.book');
+    Route::post('/', 'store')->name('api.books.store');
+    Route::post('/','saved')->name('api.AddBook');
+    Route::put('/{book}', 'update')->name('api.books.update');
+    Route::patch('/{book}', 'update')->name('api.books.update');
 
-    Route::post('/{book}/review', 'reviewStore')->name('review.store');
+    Route::post('/{book}/review', 'reviewStore')->name('api.review.store');
 
     // -- web --
     // vRoute::get('/create', 'create')->name('books.create');
