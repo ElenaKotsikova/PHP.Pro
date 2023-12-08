@@ -14,12 +14,8 @@ class BookListTest extends TestCase
      */
     public function testIndexBooks(): void
     {
-
-        $contents = (string) $this->view('home.index');
-
-
-        //$response = $this->get('/');
-
-       // $response->assertStatus(200);
+        $contents = (string) $this->view('user.login');
+        dd($contents);
+        //$view = $this->view('user.login');
     }
 }
