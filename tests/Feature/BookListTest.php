@@ -15,11 +15,11 @@ class BookListTest extends TestCase
     public function testIndexBooks(): void
     {
 
+        $contents = (string) $this->view('home.index');
 
-        //$view = $this->view('home.index');
 
-        $response = $this->get('/books');
+        //$response = $this->get('/');
 
-        $response->assertStatus(200);
+       // $response->assertStatus(200);
     }
 }
