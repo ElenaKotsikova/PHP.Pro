@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Facades\BookFacade;
 use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class BookListTest extends TestCase
 {
@@ -14,8 +16,10 @@ class BookListTest extends TestCase
      */
     public function testIndexBooks(): void
     {
-        $contents = (string) $this->view('user.login');
-        dd($contents);
-        //$view = $this->view('user.login');
+        $response = $this->get(route('home.index'));
+        $response->assertStatus(200);
     }
+
+
+
 }
