@@ -1,10 +1,12 @@
 <?php
 
 namespace Tests\Feature;
+namespace Tests\Browser;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+
 
 class LoginTest extends TestCase
 {
@@ -13,12 +15,7 @@ class LoginTest extends TestCase
      */
     public function test_visit_login(): void
     {
-        $this->get('/user/login')
-            ->assertOk();
+        $this->get('/user/login')->assertOk();
     }
 
-    public function test_view_login(): void
-    {
-
-    }
 }

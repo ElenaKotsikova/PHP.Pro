@@ -14,8 +14,8 @@
                 </li>
                 @endauth
                 @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.login') }}">Вход</a>
+                <li class="nav-item" >
+                    <a class="nav-link"  href="{{ route('user.login') }}">Вход</a>
                 </li>
                 @endguest
 
