@@ -9,6 +9,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Laravel\Dusk\DuskServiceProvider;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +21,11 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind('book', BookService::class);
-    }
+        if ($this->app->environment('local', 'testing', 'staging'))
+        {
+                $this->app->register(DuskServiceProvider::class); }
+
+        }
 
     /**
      * Bootstrap any application services.

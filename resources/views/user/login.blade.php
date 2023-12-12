@@ -4,11 +4,11 @@
     <form  action="{{ route('user.auth') }}" method="post">
         @csrf
         <label for="email">Ввидите почту</label>
-        <input type="email" name="email" >
-        <label for="password">Ввидите пароль</label>
-        <input type="password" name="password">
+        <input dusk="login-email"  type="email" name="email" >
+        <label  for="password">Ввидите пароль</label>
+        <input dusk="login-password" type="password" name="password">
 
-        <button class="btn btn-primary me-md-2">Login</button>
+        <button dusk="login-button" class="btn btn-primary me-md-2" value="login">Login</button>
     </form>
 </div>
 @endsection

@@ -16,25 +16,29 @@ class LoginTest extends DuskTestCase
      */
     public function test_view_login(): void
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visitRoute('user.login');
+        $user = User::first();
+
+        $this->browse(function ($browser) use ($user) {
+            $browser->visit('user/login')
+                ->type('email', $user->email)
+                ->type('password', 'password')
+                ->screenshot('login')
+                ->press('Login')
+                ->assertPathIs('/');
         });
     }
 
-    public  function test_broser_login(){
+   /* public  function test_broser_login(){
 
-        $user = User::factory()->createOne([
-            'email' => 'taylor@laravel.com',
-        ]);
+        $user = User::first();
 
-       /* $this->browse(function (Browser $browser) use ($user){
-            $browser->visit('/user/login')
-                ->type('email',$user->email)
-                ->type('password','password')
-                ->press('Login')
-                ->assertPathIs('/');
+        $this->browse(function (Browser $browser) use ($user){
+            $browser
+                ->loginAs($user)
+                ->visitRoute('books.index')
+                ->screenshot("books")
+            ;
+        });
 
-        });*/
-
-    }
+    }*/
 }
