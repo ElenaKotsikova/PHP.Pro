@@ -14,6 +14,9 @@ class LoginTest extends DuskTestCase
     /**
      * A Dusk test example.
      */
+    public function setUp(){
+        parent::SetUP();
+    }
     public function test_view_login(): void
     {
         $user = User::first();
