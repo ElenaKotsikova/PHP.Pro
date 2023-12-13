@@ -32,8 +32,7 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
 
 
 Route::controller(AuthorController::class)->prefix('/authors')->group(function (){
-    Route::get('/','index')->name('authors');
-    Route::get('/','full_index_author')->name('author.index');
+    Route::get('/','index')->name('author.index');
     Route::get('/create','create')->name('author.create');
     Route::post('/store','store')->name('author.store');
     Route::get('/search', 'search')->name('author.search');

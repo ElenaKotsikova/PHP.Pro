@@ -20,7 +20,7 @@
             <label for="image" class="form-label">Обложка</label>
             <input type="file" class="form-control" name="images[]" id="images[]" multiple aria-describedby="images[]">
         </div>
-        <div class="mb-3">
+        <!--div class="mb-3">
           @include('books.selectauthor')
         </div>
         <div class="mb-3">
@@ -28,7 +28,7 @@
         </div>
         <div class="mb-3">
             @include('books.selectstatus')
-        </div>
+        </div-->
         <button class="btn btn-success">Обновить</button>
     </form>
 </div>

@@ -85,10 +85,40 @@ class BookController extends Controller
 
     public  function update_book_id(Book $book):View
     {
-        $boo_update =new Book();
+        $book_update =new Book();
 
-         dd($boo_update->find($book->id));
-        //return view('books.updateBook',['book' => $boo_update->find($book->id)]);
+        $statusList = [
+            [
+                'key' => BookStatus::Published->value,
+                'value' => 'Опубликована',
+            ],
+            [
+                'key' => BookStatus::Draft->value,
+                'value' => 'Черновик',
+            ],
+        ];
+        $authors = Author::query()->get()->map(function ($author) {
+            return [
+                'key' => $author->id,
+                'value' => "$author->name $author->surname",
+            ];
+        })->toArray();
+
+        $publishers = Publisher::query()->get()->map(function ($publisher) {
+            return [
+                'key' => $publisher->id,
+                'value' => "$publisher->name $publisher->surname",
+            ];
+        })->toArray();
+
+        //dd($book_update->find($book->id));
+
+        return view('books.updateBook',['book' => $book_update->find($book->id),
+            'authors' => $authors,
+            'statusList' => $statusList,
+            'publishers' => $publishers,
+
+            ]);
     }
 
     public function update(Book $book)

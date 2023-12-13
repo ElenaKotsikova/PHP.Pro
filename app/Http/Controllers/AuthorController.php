@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
 
-    public function full_index_author():View
+    public function index():View
     {
         $authors = Author::all();
 
@@ -19,18 +19,7 @@ class AuthorController extends Controller
     }
 
 
-    public function index(){
 
-        $authors = Author::all();
-
-        $result_author =$authors->map(function ($author){
-            return[
-                'id' => $author->id,
-                'name'=>$author->name,
-            ];
-        });
-        return $result_author;
-    }
     public function show(Author $author):View
     {
         return view('author.author_show',['author'=>$author]);

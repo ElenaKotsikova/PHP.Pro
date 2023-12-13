@@ -24,6 +24,8 @@ class LoginTest extends DuskTestCase
 
         parent::SetUP();
 
+        $this->login();
+
     }
     public function test_view_login(): void
     {
