@@ -11,15 +11,24 @@ use App\Models\Review;
 
 class LoginTest extends DuskTestCase
 {
-    /**
-     * A Dusk test example.
-     */
+    protected User $carentUser;
+    public function login(){
+
+        $this->carentUser = User::factory()
+            ->createOne([
+                'password'=> Hash::make('password')
+            ]);
+    }
+
     public function setUp(){
+
         parent::SetUP();
+
     }
     public function test_view_login(): void
     {
-        $user = User::first();
+        $this->carentUser = User::first();
+        $user =  $this->carentUser;
 
         $this->browse(function ($browser) use ($user) {
             $browser->visit('user/login')
