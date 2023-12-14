@@ -2,6 +2,6 @@
 <select class="form-control" id="statusList" name="status" >
     <option>Выберите Статус</option>
     @foreach($statusList as $status)
-    <option value="$status->key">$status->value</option>
+
     @endforeach
 </select>

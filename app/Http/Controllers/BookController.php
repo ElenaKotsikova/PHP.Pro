@@ -9,6 +9,7 @@ use App\Http\Resources\BookListResource;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
+use App\Models\Image;
 use App\Services\Book\CreateBookData;
 use App\Enums\BookStatus;
 use Illuminate\Http\RedirectResponse;
@@ -111,20 +112,23 @@ class BookController extends Controller
             ];
         })->toArray();
 
-        //dd($book_update->find($book->id));
-
         return view('books.updateBook',['book' => $book_update->find($book->id),
+            'title' => $book->title,
+            'page_number' => $book->page_number,
             'authors' => $authors,
             'statusList' => $statusList,
             'publishers' => $publishers,
-
+             'status' => $book_update->status,
+              'authorid' => $book_update->author_id,
+            'publisherid'=>$book_update->publisher_id
             ]);
     }
 
     public function update(Book $book)
     {
-       $book = BookFacade::update();
-       return redirect()->route('books.index');
+        dd($book);
+       //$book = BookFacade::update();
+       //return redirect()->route('books.index');
 
     }
 

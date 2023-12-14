@@ -1,7 +1,10 @@
+
+
 <label for="authors" class="form-label">Авторы</label>
-<select class="form-control" id="authors" name="author_id">
+<select class="form-control" id="authors" name="authors">
     <option>Выберите Автора</option>
     @foreach($authors as $author)
-    <option name="authors"  value="{{ $author->id }}">{{$author->surname}} {{$author->name}}</option>
+    dd($authors)
+
     @endforeach
 </select>
