@@ -66,6 +66,9 @@ class BookService
             if (request()->has('annotation')) {
                 $data['annotation'] = request()->input('annotation');
             }
+            if (request()->has('status')) {
+                $data['status'] = request()->input('status');
+            }
             if (request()->has('publisher_id')) {
                 $data['publisher_id'] = request()->integer('publisher_id');
             }
@@ -74,7 +77,7 @@ class BookService
             }
         }
 
-        $this->book->update($data);
+       $this->book->update($data);
 
         return $this->book;
     }

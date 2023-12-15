@@ -34,7 +34,10 @@ class Book extends Model
     {
         return $this->belongsTo(Author::class);
     }
-
+    public function publishers(): BelongsTo
+    {
+        return $this->belongsTo(Publishers::class);
+    }
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);

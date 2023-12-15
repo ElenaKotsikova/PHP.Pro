@@ -84,7 +84,7 @@ class BookController extends Controller
         return redirect()->route('books.show', ['book' => $book->id]);
     }
 
-    public  function update_book_id(Book $book):View
+    public  function edit(Book $book):View
     {
         $book_update =new Book();
 
@@ -124,12 +124,11 @@ class BookController extends Controller
             ]);
     }
 
-    public function update(Book $book)
+    public function update(StoreBookRequest $request,Book $book):RedirectResponse
     {
-        dd($book);
-       //$book = BookFacade::update();
-       //return redirect()->route('books.index');
-
+        $book_update = BookFacade::setBook($book)
+                       ->update();
+        return redirect()->route('books.index');
     }
 
     public function search(Request $request)
@@ -139,7 +138,6 @@ class BookController extends Controller
             ->orWhere('annotation', 'like', "%$request->q%")
             ->get()
         ;
-
         return view('books.index', ['books' => $books]);
     }
 

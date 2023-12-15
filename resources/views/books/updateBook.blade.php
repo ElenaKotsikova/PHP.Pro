@@ -3,7 +3,7 @@
 <div class="form_book" >
     <form action="{{route('books.update',[$book->id])}}" method="post" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <x-book.input-text : label="Название книги"
                            : name="title" : id="title" :errors="$errors->get('title')"
                            :value="$title"/>

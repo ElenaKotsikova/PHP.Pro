@@ -18,8 +18,6 @@ class AuthorController extends Controller
         return view('author.listauthor',['authors'=>$authors]);
     }
 
-
-
     public function show(Author $author):View
     {
         return view('author.author_show',['author'=>$author]);
