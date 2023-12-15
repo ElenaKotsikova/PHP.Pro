@@ -42,6 +42,18 @@ class AuthorController extends Controller
          return redirect()->route('author.index');
     }
 
+    public function edit(Author $author):View
+    {
+        $author_update = new Author();
+
+        return view('author.updateAuthor',['author'=>$author_update->find($author->id),
+
+            'surname'=>$author->surname,
+            'name'=>$author->name,
+            'patronymic' =>$author->patronymic
+        ]);
+    }
+
     public function update(Author $author)
     {
         $data = [];

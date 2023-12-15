@@ -6,6 +6,6 @@
         <td>{{$author->patronymic}}</td>
         <td>{{$author->created_at}}</td>
         <td>{{$author->updated_at}}</td>
-        <td><button type="button" class="btn btn-primary">Редактировать</button</td>
+        <td><a href="{{route('author.edit',['author'=>$author->id])}}" class="btn btn-primary" role="button">Редактировать</a></td>
     </tr>
 

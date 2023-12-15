@@ -34,12 +34,13 @@ Route::controller(BookController::class)->prefix('/books')->group(function () {
 Route::controller(AuthorController::class)->prefix('/authors')->group(function (){
     Route::get('/','index')->name('author.index');
     Route::get('/create','create')->name('author.create');
+    Route::get('/edit/{author}','edit')->name('author.edit');
     Route::post('/store','store')->name('author.store');
     Route::get('/search', 'search')->name('author.search');
     Route::get('/filter', 'filter')->name('author.filter');
     Route::get('/{author}','show')->name('author.show');
-   //Route::put('/{author}', 'update')->name('author.update');
-   //Route::patch('/{author}', 'update')->name('author.update');
+    Route::put('/{author}/update', 'update')->name('author.update');
+    Route::patch('/{author}/update', 'update')->name('author.update');
 
 });
 
